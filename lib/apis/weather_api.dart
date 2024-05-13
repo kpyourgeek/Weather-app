@@ -30,7 +30,8 @@ class WeatherApi {
     }
     // getting current location
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        desiredAccuracy: LocationAccuracy.high,
+        timeLimit: const Duration(seconds: 20));
     // convert location to list of place marks objects
     List<Placemark> placemark =
         await placemarkFromCoordinates(position.latitude, position.longitude);

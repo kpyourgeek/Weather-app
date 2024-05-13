@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_weather/apis/weather_api.dart';
@@ -38,13 +35,6 @@ class _HomePageViewState extends State<HomePageView> {
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) {
-      SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        systemNavigationBarColor:
-            Color.fromARGB(255, 122, 139, 139), // Set the desired color here
-      ));
-    }
-
     // fetch weather on startup
     _fetchWeather();
   }
@@ -104,6 +94,7 @@ class _HomePageViewState extends State<HomePageView> {
                       // color: Colors.white,
                     ),
                   ),
+                  const SizedBox(width: 20),
                   Text(
                     _weather?.weatherCondtion ?? 'Weather ...',
                     style: GoogleFonts.rubik(
@@ -120,7 +111,7 @@ class _HomePageViewState extends State<HomePageView> {
               Lottie.asset(weatherAnimations(_weather?.weatherCondtion)),
               const SizedBox(height: 40),
               Text(
-                '${_weather?.temperature.toString()}°C',
+                '${_weather?.temperature.toString()} °C',
                 style: GoogleFonts.rubik(
                   fontSize: 40,
                   fontWeight: FontWeight.w600,
